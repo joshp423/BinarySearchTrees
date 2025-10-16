@@ -159,21 +159,75 @@ export class Tree {
   }
 
   height(value) {
-    const data = [];
+    const current = this.find(value);
+    if (current === "no such value") {
+      return null;
+    }
     const recursiveStep = (current) => {
-      if (current.data === value) {
-        return;
+      if (current === null) {
+        return -1;
+      }
+    
+      // compute the height of left and right subtrees
+      let lHeight = recursiveStep(current.left);
+      let rHeight = recursiveStep(current.right);
+
+      return Math.max(lHeight, rHeight) + 1;
+    }
+    return recursiveStep(current);
+  }
+
+  depth(value) {
+    const target = this.find(value);
+    if (target === "no such value") {
+      return null;
+    }
+    const recursiveStep = (current, depth = 0) => {
+      if (!current) {
+        return null;
+      } 
+
+      if (current === target) {
+         return depth;
       }
 
-      recursiveStep(current.left);
-      data.push(current.data);
-      recursiveStep(current.right);
-    };
-    recursiveStep(this.root);
-    return data.length;
-  }
-}
+      // search left subtree
+      const left = recursiveStep(current.left, depth + 1);
+      if (left !== null) {
+        return left;
+      }
 
+      // search right subtree
+      const right = recursiveStep(current.right, depth + 1);
+      if (right !== null) {
+        return right;
+      }
+      return null;
+    }
+    return recursiveStep(this.root);
+  };
 
-
+  isBalanced() {
+    //height compare between height(node.left) and height(node.right)
+    const current = this.find(value);
+    if (current === "no such value") {
+      return null;
+    }
+    const recursiveStep = (current) => {
+      if (current === null) {
+        return -1;
+      }
     
+      // compute the height of left and right subtrees
+      let lHeight = recursiveStep(current.left);
+      let rHeight = recursiveStep(current.right);
+
+      return Math.max(lHeight, rHeight) + 1;
+    }
+    return recursiveStep(current);
+  }
+  }
+
+  
+  
+}
