@@ -4,7 +4,7 @@ export class Node {
       throw Error("You must use the 'new' operator to call the constructor");
     }
     this.data = data;
-    this.lChild = null;
-    this.rChild = null;
+    this.left = null;
+    this.right = null;
   }
 }
