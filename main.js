@@ -18,4 +18,4 @@ prettyPrint(test.root)
 // test.root = test.deletefromBST(test.root, 10)
 // console.log(test.find(8))
 
-console.log(test.depth(5));
+console.log(test.isBalanced());

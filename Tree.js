@@ -209,11 +209,12 @@ export class Tree {
 
   isBalanced() {
     //height compare between height(node.left) and height(node.right)
-    const current = this.find(value);
+    const current = this.root
     if (current === "no such value") {
       return null;
     }
     const recursiveStep = (current) => {
+      let sum = 0;
       if (current === null) {
         return -1;
       }
@@ -222,11 +223,15 @@ export class Tree {
       let lHeight = recursiveStep(current.left);
       let rHeight = recursiveStep(current.right);
 
-      return Math.max(lHeight, rHeight) + 1;
+      sum = lHeight - rHeight;
+      if (sum > 1) {
+        return false
+      }
+      return true;
     }
     return recursiveStep(current);
   }
-  }
+  
 
   
   
