@@ -37,7 +37,7 @@ const unbalanceArray = () => {
 function logger(current) {
     console.log(current);
 }
-
+//driver script
 const test = new Tree(newRandomArray());
 console.log(test.isBalanced());
 test.levelOrderForEach(logger);
