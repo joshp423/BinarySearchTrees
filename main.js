@@ -1,7 +1,4 @@
 import { Tree } from "./Tree.js";
-const testArray = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]
-const test = new Tree(testArray);
-// test.root = test.insertToBST(10, test.root);
 const prettyPrint = (node, prefix = '', isLeft = true) => {
             if (node === null) {
                 return;
@@ -14,8 +11,47 @@ const prettyPrint = (node, prefix = '', isLeft = true) => {
                 prettyPrint(node.left, `${prefix}${isLeft ? '    ' : '│   '}`, true);
             }
 };
-prettyPrint(test.root)
-// test.root = test.deletefromBST(test.root, 10)
-// console.log(test.find(8))
 
+const newRandomArray = () => {
+    let i = 0;
+    let array = [];
+    while(i < 100) {
+        array.push(Math.floor(Math.random() * 100));
+        i++;
+    }
+    console.log(array)
+    return array;
+}
+const unbalanceArray = () => {
+    let i = 0;
+    let array = [];
+    while(i < 10) {
+        array.push(Math.floor(Math.random() * 500));
+        i++;
+    }
+    console.log(array)
+    return array;
+}
+
+
+function logger(current) {
+    console.log(current);
+}
+
+const test = new Tree(newRandomArray());
 console.log(test.isBalanced());
+test.levelOrderForEach(logger);
+test.preOrderForEach(logger);
+test.postOrderForEach(logger);
+test.inOrderForEach(logger);
+unbalanceArray().forEach((element) => {
+    test.root = test.insertToBST(element, test.root)
+})
+console.log(test.isBalanced());
+prettyPrint(test.root)
+test.rebalance();
+prettyPrint(test.root)
+test.levelOrderForEach(logger);
+test.preOrderForEach(logger);
+test.postOrderForEach(logger);
+test.inOrderForEach(logger);
